@@ -1,0 +1,2627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innaloo McShits — Flogs of Fantasy Football 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #12151c;
+    --surface2: #1a1e28;
+    --border: #2a2f3e;
+    --accent: #00e5a0;
+    --accent2: #ff4d6d;
+    --accent3: #ffb700;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --field-green: #1a4a2e;
+    --field-light: #1f5535;
+    --field-line: rgba(255,255,255,0.08);
+
+    /* Club colours */
+    --brl: #a30046;
+    --brl2: #fbbf15;
+    --stk: #ed0f05;
+    --stk2: #fff;
+    --gcs: #e8141e;
+    --gcs2: #ffd200;
+    --mel: #cc2031;
+    --mel2: #003087;
+    --haw: #4d2004;
+    --haw2: #fbb800;
+    --col: #111;
+    --col2: #fff;
+    --gws: #f47920;
+    --gws2: #374f6b;
+    --nth: #003b99;
+    --nth2: #c8202f;
+    /* NEW */
+    --geo: #003087;
+    --geo2: #ffffff;
+    --wce: #002b5c;
+    --wce2: #f2a900;
+    --wbd: #014396;
+    --wbd2: #c8222d;
+    --syd: #e2000f;
+    --syd2: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0d1117 0%, #111827 50%, #0d1117 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 72px;
+  }
+
+  .header-left { display: flex; align-items: center; gap: 16px; }
+
+  .team-badge {
+    width: 60px; height: 60px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 12px rgba(0,229,160,0.35));
+  }
+  .team-badge svg { width: 60px; height: 60px; }
+
+  .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 1px;
+    line-height: 1;
+    background: linear-gradient(90deg, #fff 40%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .league-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ── LIVE ROUND SCORE on player card ── */
+  .live-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+    transition: color 0.4s, text-shadow 0.4s;
+  }
+  .live-score.scoring {
+    color: #00e5a0;
+    text-shadow: 0 0 24px rgba(0,229,160,0.7);
+  }
+  .live-score.zero {
+    color: rgba(255,255,255,0.18);
+  }
+  .live-score-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: -4px;
+  }
+
+  /* ── TOTAL ROUND SCORE in header ── */
+  .round-score-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0,229,160,0.07);
+    border: 1px solid rgba(0,229,160,0.3);
+    border-radius: 12px;
+    padding: 6px 20px;
+    min-width: 110px;
+  }
+  .round-score-total .score-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(0,229,160,0.6);
+  }
+  .round-score-total .score-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    color: #00e5a0;
+    text-shadow: 0 0 30px rgba(0,229,160,0.4);
+    letter-spacing: 2px;
+  }
+  .round-score-total .score-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 1px;
+  }
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .round-badge {
+    background: var(--accent);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .fixture-teams {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+
+  .fixture-vs {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0 4px;
+  }
+
+  /* ── INJURY ALERT BAR ── */
+  .alert-bar {
+    background: linear-gradient(90deg, rgba(255,77,109,0.15) 0%, rgba(255,77,109,0.05) 100%);
+    border-bottom: 1px solid rgba(255,77,109,0.3);
+    padding: 9px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .alert-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .alert-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px;
+    color: #ccc;
+  }
+
+  .alert-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dot-out { background: var(--accent2); box-shadow: 0 0 6px rgba(255,77,109,0.7); }
+  .dot-watch { background: var(--accent3); box-shadow: 0 0 6px rgba(255,183,0,0.7); }
+  .dot-ok { background: var(--accent); box-shadow: 0 0 6px rgba(0,229,160,0.7); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 20px;
+    padding: 20px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .main { grid-template-columns: 1fr; }
+  }
+
+  /* ── FIELD SECTION ── */
+  .field-section { display: flex; flex-direction: column; gap: 16px; }
+
+  /* Team selection status panel — below the oval */
+  .field-status-panel .sidebar-card {
+    border-radius: 12px;
+  }
+  .field-status-panel .sidebar-card-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0 16px;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .oval-wrapper {
+    position: relative;
+    background: var(--field-green);
+    border-radius: 50% / 12%;
+    overflow: hidden;
+    padding: 40px 20px;
+    box-shadow: 0 0 0 3px rgba(0,229,160,0.2), 0 20px 60px rgba(0,0,0,0.5);
+    min-height: 740px;
+  }
+
+  /* Field markings */
+  .oval-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 10%;
+    border: 1px solid var(--field-line);
+    border-radius: 50%;
+  }
+
+  .field-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; height: 80px;
+    border: 1px solid var(--field-line);
+    border-radius: 50%;
+  }
+
+  .field-center-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--field-line);
+  }
+
+  .field-hline {
+    position: absolute;
+    top: 50%; left: 5%;
+    width: 90%;
+    height: 1px;
+    background: rgba(255,255,255,0.13);
+  }
+
+  .field-zone-label {
+    position: absolute;
+    left: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    padding: 6px 4px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 3;
+  }
+
+  .ruck-label  {
+    top: 8%; transform: rotate(180deg);
+    color: #fff;
+    background: rgba(0,229,160,0.18);
+    border: 1px solid rgba(0,229,160,0.35);
+    color: var(--accent);
+  }
+  .tac-label   {
+    top: 25%; transform: rotate(180deg);
+    background: rgba(255,183,0,0.15);
+    border: 1px solid rgba(255,183,0,0.3);
+    color: var(--accent3);
+  }
+  .int-label   {
+    top: 42%; transform: rotate(180deg);
+    background: rgba(147,112,219,0.15);
+    border: 1px solid rgba(147,112,219,0.3);
+    color: #c084fc;
+  }
+  .mid-label   {
+    top: 59%; transform: rotate(180deg);
+    background: rgba(56,189,248,0.15);
+    border: 1px solid rgba(56,189,248,0.3);
+    color: #38bdf8;
+  }
+  .fwd-label   {
+    top: 76%; transform: rotate(180deg);
+    background: rgba(255,77,109,0.15);
+    border: 1px solid rgba(255,77,109,0.3);
+    color: var(--accent2);
+  }
+
+  .field-zone-score {
+    position: absolute;
+    right: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    padding: 6px 4px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 3;
+    color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .ruck-score  { top: 8%;  }
+  .tac-score   { top: 25%; }
+  .int-score   { top: 42%; }
+  .mid-score   { top: 59%; }
+  .fwd-score   { top: 76%; }
+  .player-row {
+    position: absolute;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 24px;
+  }
+
+  .row-ruck      { top: 8%;  }
+  .row-tackler   { top: 25%; }
+  .row-intercept { top: 42%; }
+  .row-mids      { top: 59%; }
+  .row-forwards  { top: 76%; }
+
+  /* ── PLAYER CARD ── */
+  .player-card {
+    position: relative;
+    width: 110px;
+    background: rgba(18, 21, 28, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 8px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+  }
+
+  .player-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.2);
+    z-index: 10;
+  }
+
+  /* Club colour strip top */
+  .club-strip {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* Club badge tile — replaces photo */
+  .club-badge {
+    width: 68px;
+    height: 72px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+  }
+
+  .club-badge .cb-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* Diagonal split pattern for two-tone clubs */
+  .club-badge .cb-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    clip-path: polygon(55% 0, 100% 0, 100% 100%, 45% 100%);
+    filter: brightness(0.85);
+  }
+
+  .club-badge .cb-code {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+  }
+
+  .club-badge .cb-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.6);
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+
+  /* Injury tint overlay on badge */
+  .club-badge.badge-injured::before {
+    content: '🚑';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: rgba(255,77,109,0.25);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 3px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  /* Bench badge — slightly smaller */
+  .bench-badge {
+    width: 52px;
+    height: 56px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+  }
+
+  .bench-badge .cb-bg { position: absolute; inset: 0; z-index: 0; }
+  .bench-badge .cb-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    clip-path: polygon(55% 0, 100% 0, 100% 100%, 45% 100%);
+    filter: brightness(0.85);
+  }
+  .bench-badge .cb-code {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.7);
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+  }
+  .bench-badge .cb-label {
+    font-size: 7px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: rgba(255,255,255,0.55);
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+  .bench-badge.badge-injured::before {
+    content: '✕';
+    position: absolute;
+    top: 3px; right: 3px;
+    z-index: 2;
+    background: rgba(255,77,109,0.85);
+    color: #fff;
+    font-size: 8px;
+    font-weight: 900;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .player-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11.5px;
+    text-align: center;
+    line-height: 1.15;
+    color: #fff;
+    width: 100%;
+  }
+
+  .player-club {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .pos-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .score-rule {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--accent);
+    text-align: center;
+    line-height: 1.2;
+    opacity: 0.85;
+  }
+
+  /* 3-game average chip */
+  .avg-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 2px;
+  }
+
+  .avg-chip .avg-label {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+  }
+
+  .avg-chip .avg-val {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+
+  .avg-chip .avg-val.na {
+    color: rgba(255,255,255,0.2);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .avg-chip .avg-pts {
+    font-size: 8px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.5px;
+  }
+
+  /* Zone-coloured avg chips */
+  .zone-ruck   .avg-chip { border-color: rgba(0,229,160,0.3);  }
+  .zone-ruck   .avg-chip .avg-val { color: var(--accent); text-shadow: 0 0 12px rgba(0,229,160,0.5); }
+  .zone-tac    .avg-chip { border-color: rgba(255,183,0,0.3);  }
+  .zone-tac    .avg-chip .avg-val { color: var(--accent3); text-shadow: 0 0 12px rgba(255,183,0,0.5); }
+  .zone-int    .avg-chip { border-color: rgba(192,132,252,0.3); }
+  .zone-int    .avg-chip .avg-val { color: #c084fc; text-shadow: 0 0 12px rgba(192,132,252,0.5); }
+  .zone-mid    .avg-chip { border-color: rgba(56,189,248,0.3);  }
+  .zone-mid    .avg-chip .avg-val { color: #38bdf8; text-shadow: 0 0 12px rgba(56,189,248,0.5); }
+  .zone-fwd    .avg-chip { border-color: rgba(255,77,109,0.3);  }
+  .zone-fwd    .avg-chip .avg-val { color: var(--accent2); text-shadow: 0 0 12px rgba(255,77,109,0.5); }
+
+  /* bench avg label */
+  .bench-avg {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  .status-badge {
+    position: absolute;
+    top: 8px; right: 6px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    border: 1.5px solid rgba(0,0,0,0.3);
+    font-weight: 700;
+    z-index: 2;
+  }
+
+  .card-round-score {
+    position: absolute;
+    top: 8px; left: 6px;
+    min-width: 20px; height: 20px;
+    padding: 0 4px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 800;
+    background: #0a0c10;
+    border: 1.5px solid #2a2f3e;
+    color: #4b5563;
+    z-index: 2;
+    transition: color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    letter-spacing: 0;
+  }
+  .card-round-score.scoring {
+    color: #00e5a0;
+    border-color: #00e5a060;
+    box-shadow: 0 0 8px #00e5a040;
+  }
+
+  .status-playing {
+    background: var(--accent);
+    color: #000;
+  }
+
+  .status-injured {
+    background: var(--accent2);
+    color: #fff;
+    animation: pulse-red 1.5s ease-in-out infinite;
+  }
+
+  .status-watch {
+    background: var(--accent3);
+    color: #000;
+  }
+
+  .status-unknown {
+    background: #4b5563;
+    color: #9ca3af;
+  }
+
+  @keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,77,109,0.5); }
+    50% { box-shadow: 0 0 0 5px rgba(255,77,109,0); }
+  }
+
+  /* ── INJURY OVERLAY ── */
+  .card-injured-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,77,109,0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(255,77,109,0.4) !important;
+    pointer-events: none;
+  }
+
+  .card-watch-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,183,0,0.06);
+    border-radius: 12px;
+    border: 1px solid rgba(255,183,0,0.3) !important;
+    pointer-events: none;
+  }
+
+  /* ── BENCH SECTION ── */
+  .bench-section {
+    margin-top: 4px;
+  }
+
+  .bench-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bench-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--accent3);
+  }
+
+  .bench-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 6px;
+  }
+
+  .bench-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s;
+    cursor: pointer;
+  }
+
+  .bench-card:hover { transform: translateY(-2px); }
+
+  .bench-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-align: center;
+    color: #ccc;
+    line-height: 1.1;
+  }
+
+  .bench-club {
+    font-size: 9px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+  .sidebar-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .sidebar-card-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .sidebar-card-body { padding: 12px 16px; }
+
+  /* Fixture card */
+  .fixture-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .fixture-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .fixture-team-badge {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .fixture-team-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    color: var(--text);
+  }
+
+  .fixture-vs-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--muted);
+  }
+
+  /* Season stats / legend */
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(42,47,62,0.5);
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .legend-row:last-child { border-bottom: none; }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Season history pills */
+  .history-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 4px;
+  }
+
+  /* Injury detail list */
+  .inj-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .inj-item:last-child { border-bottom: none; }
+
+  .inj-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .inj-out { background: rgba(255,77,109,0.15); border: 1px solid rgba(255,77,109,0.3); }
+  .inj-watch { background: rgba(255,183,0,0.15); border: 1px solid rgba(255,183,0,0.3); }
+  .inj-clear { background: rgba(0,229,160,0.15); border: 1px solid rgba(0,229,160,0.3); }
+
+  .inj-detail { flex: 1; }
+
+  .inj-player-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .inj-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+
+  .inj-eta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-top: 3px;
+    display: inline-block;
+  }
+
+  .eta-out { background: rgba(255,77,109,0.2); color: var(--accent2); }
+  .eta-clear { background: rgba(0,229,160,0.2); color: var(--accent); }
+
+  /* ── TOOLTIP ── */
+  .tooltip {
+    position: fixed;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text);
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.15s;
+    max-width: 200px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+
+  .tooltip.visible { opacity: 1; }
+
+  /* ── LAST UPDATED ── */
+  .last-updated {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    padding: 12px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Animations */
+  .player-card, .bench-card {
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .team-logo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0 8px;
+  }
+  .team-logo-wrap {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+  }
+
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-left">
+    <div class="team-badge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680">
+  <defs><path id="lta" d="M 68,340 A 272,272 0 0,1 612,340"/><path id="lba" d="M 82,340 A 258,258 0 0,0 598,340"/></defs>
+  <circle cx="340" cy="340" r="298" fill="#080a0f"/>
+  <circle cx="340" cy="340" r="300" fill="none" stroke="#00e5a0" stroke-width="4"/>
+  <circle cx="340" cy="340" r="284" fill="none" stroke="#00e5a0" stroke-width="1" opacity="0.45"/>
+  <circle cx="340" cy="340" r="246" fill="none" stroke="rgba(0,229,160,0.18)" stroke-width="1"/>
+  <polygon points="340,36 346,47 340,58 334,47" fill="#00e5a0"/>
+  <polygon points="340,622 346,633 340,644 334,633" fill="#00e5a0"/>
+  <!-- Layer 1: Full drumstick (bone will go under gun) -->
+  <g transform="translate(340,340) rotate(45)">
+    <rect x="-7" y="-48" width="14" height="158" rx="7" fill="#ede7d8" stroke="#c4ba9e" stroke-width="1.5"/>
+    <ellipse cx="0" cy="118" rx="18" ry="14" fill="#ede7d8" stroke="#c4ba9e" stroke-width="1.5"/>
+    <ellipse cx="0" cy="-100" rx="50" ry="58" fill="#b86a1c" stroke="#7a4410" stroke-width="2.5"/>
+    <ellipse cx="-14" cy="-116" rx="19" ry="23" fill="#d98a24" opacity="0.5"/>
+    <path d="M-44,-74 Q-22,-56 0,-62 Q22,-68 44,-74" fill="none" stroke="#7a4410" stroke-width="1.5"/>
+    <circle cx="0" cy="-162" r="9" fill="#c5a050" stroke="#8a6e28" stroke-width="1.5"/>
+  </g>
+  <!-- Layer 2: Gun (over bone, under meat) -->
+  <g transform="translate(340,340) rotate(45)">
+    <rect x="-126" y="-10" width="183" height="20" rx="5" fill="#8d9aaa" stroke="#5c6878" stroke-width="1.5"/>
+    <rect x="-126" y="-8" width="20" height="16" rx="3" fill="#6a7888"/>
+    <rect x="-58" y="-10" width="5" height="7" rx="1" fill="#5c6878"/>
+    <rect x="-46" y="-10" width="5" height="7" rx="1" fill="#5c6878"/>
+    <rect x="-34" y="-10" width="5" height="7" rx="1" fill="#5c6878"/>
+    <ellipse cx="-12" cy="1" rx="25" ry="29" fill="#a8b4be" stroke="#5c6878" stroke-width="1.5"/>
+    <circle cx="-12" cy="1" r="6" fill="#5c6878"/>
+    <line x1="-37" y1="-14" x2="-37" y2="16" stroke="#6a7888" stroke-width="1.5"/>
+    <rect x="50" y="-20" width="17" height="11" rx="3" fill="#5c6878" stroke="#3d4e5e" stroke-width="1"/>
+    <path d="M52,10 L73,74 Q72,85 59,85 L35,85 Q22,85 22,72 L22,10 Z" fill="#2d3748" stroke="#1a2535" stroke-width="2"/>
+    <line x1="28" y1="27" x2="67" y2="29" stroke="#3d4e60" stroke-width="1.2"/>
+    <line x1="28" y1="42" x2="68" y2="44" stroke="#3d4e60" stroke-width="1.2"/>
+    <line x1="29" y1="57" x2="67" y2="59" stroke="#3d4e60" stroke-width="1.2"/>
+    <line x1="30" y1="71" x2="62" y2="73" stroke="#3d4e60" stroke-width="1.2"/>
+    <path d="M26,10 Q24,37 44,37 Q61,37 61,10" fill="none" stroke="#5c6878" stroke-width="2"/>
+    <line x1="40" y1="10" x2="44" y2="31" stroke="#8d9aaa" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <!-- Layer 3: Drumstick meat redrawn on top (intertwine illusion) -->
+  <g transform="translate(340,340) rotate(45)">
+    <ellipse cx="0" cy="-100" rx="50" ry="58" fill="#b86a1c" stroke="#7a4410" stroke-width="2.5"/>
+    <ellipse cx="-14" cy="-116" rx="19" ry="23" fill="#d98a24" opacity="0.5"/>
+    <path d="M-44,-74 Q-22,-56 0,-62 Q22,-68 44,-74" fill="none" stroke="#7a4410" stroke-width="1.5"/>
+    <circle cx="0" cy="-162" r="9" fill="#c5a050" stroke="#8a6e28" stroke-width="1.5"/>
+  </g>
+  <text x="340" y="118" text-anchor="middle" font-family="'Bebas Neue',Impact,sans-serif" font-size="36" fill="#ffffff" letter-spacing="8">INNALOO McSHITS</text>
+  <text x="340" y="568" text-anchor="middle" font-family="'Barlow Condensed','Arial Narrow',sans-serif" font-size="16" fill="#00e5a0" letter-spacing="3" font-weight="700">FLOGS OF FANTASY FOOTBALL</text>
+  <text x="340" y="505" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="12" fill="rgba(255,255,255,0.3)" letter-spacing="5">EST. 2022</text>
+</svg>
+</div>
+    <div>
+      <div class="team-name">Innaloo McShits</div>
+      <div class="league-name">Flogs of Fantasy Football 2026</div>
+    </div>
+  </div>
+  <div id="vs-scoreboard" style="
+    display:flex;align-items:center;gap:0;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px;overflow:hidden;
+  ">
+    <div style="display:flex;flex-direction:column;align-items:center;padding:8px 18px;min-width:100px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:800;letter-spacing:2px;color:rgba(0,229,160,0.7);text-transform:uppercase;margin-bottom:2px">McShits</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#00e5a0;text-shadow:0 0 30px rgba(0,229,160,0.4)" id="total-round-score">0</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:1px">9 players · live</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:0 14px;border-left:1px solid rgba(255,255,255,0.06);border-right:1px solid rgba(255,255,255,0.06)">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.2);text-transform:uppercase" id="vs-round-label">Round 1</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:rgba(255,255,255,0.3);letter-spacing:2px">VS</div>
+      <div id="opp-sheet-status" style="font-size:9px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;color:rgba(255,255,255,0.2)">sheet</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:8px 18px;min-width:100px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:800;letter-spacing:2px;color:rgba(255,77,109,0.7);text-transform:uppercase;margin-bottom:2px" id="opp-name-label">Sanders Chimps</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#ff4d6d;text-shadow:0 0 30px rgba(255,77,109,0.3)" id="opp-round-score">—</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:1px">from sheet</div>
+    </div>
+  </div>
+</header>
+
+<!-- API STATUS BAR -->
+<div id="api-status-bar" style="
+  background:#0d1117;border-bottom:1px solid #1e2330;
+  padding:6px 20px;display:flex;align-items:center;gap:10px;
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:0.5px;
+">
+  <div id="api-pulse" style="width:7px;height:7px;border-radius:50%;background:#4b5563;flex-shrink:0;transition:background 0.4s"></div>
+  <span id="api-status-text" style="color:#6b7280">Stats engine initialising...</span>
+  <span style="margin-left:auto;color:#374151;font-size:10px">AUTO-REFRESH · 5 MIN</span>
+  <button onclick="window.manualRefresh && window.manualRefresh()" style="
+    background:#1a1e28;border:1px solid #2a2f3e;color:#9ca3af;
+    font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1px;
+    padding:2px 10px;border-radius:5px;cursor:pointer;text-transform:uppercase;
+    transition:all 0.15s;
+  " onmouseover="this.style.borderColor='#00e5a0';this.style.color='#00e5a0'"
+     onmouseout="this.style.borderColor='#2a2f3e';this.style.color='#9ca3af'">↺ Refresh</button>
+</div>
+
+<!-- INJURY ALERT BAR REMOVED — status shown on player cards -->
+<div class="alert-bar" style="display:none">
+  <span class="alert-title">⚡ Team News — R1 (Thu 12 Mar, 6:20pm AEDT)</span>
+  <span class="alert-item"><span class="alert-dot dot-out"></span><b>Hugh McCluggage</b> — CONFIRMED OUT R1 (calf, Lions) — BRL bye R2</span>
+  <span class="alert-item"><span class="alert-dot dot-out"></span><b>Logan Morris</b> — CONFIRMED OUT R1 (hand fracture)</span>
+  <span class="alert-item"><span class="alert-dot dot-out"></span><b>Toby Bedford</b> — OUT R1 (hamstring, GWS) — weeks away</span>
+  <span class="alert-item"><span class="alert-dot dot-out"></span><b>Brent Daniels</b> — OUT R1 (GWS, post-surgery recovery)</span>
+  <span class="alert-item"><span class="alert-dot dot-out"></span><b>Max King</b> — OUT R1 (not named, STK)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Josh Battle</b> — PLAYING ✓ Named HB for Hawthorn vs Essendon (Fri)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Shannon Neale</b> — PLAYING ✓ Named Geelong vs Fremantle (Sat)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Joel Amartey</b> — PLAYING ✓ Named Sydney vs Brisbane (Sat)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Sam Flanders</b> — PLAYING ✓ Named Followers, STK vs MEL (Sun)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Hugo Garcia</b> — PLAYING ✓ Named STK vs MEL — final 22 confirmed Fri 5pm</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Max Hall</b> — PLAYING ✓ Named Centre, STK vs MEL (Sun)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Joel Freijah</b> — PLAYING ✓ Named WBD vs GWS (Sat)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Bayley Fritsch</b> — PLAYING ✓ Cleared for MEL vs STK (Sun)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Harley Reid</b> — PLAYING ✓ Named WCE vs GCS (Sun)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Devon Robertson</b> — Named WCE vs GCS (Sun) — now at West Coast Eagles</span>
+  <span class="alert-item"><span class="alert-dot dot-watch"></span><b>Jarrod Witts</b> — Named GCS extended squad · final 22 Fri 5pm</span>
+  <span class="alert-item"><span class="alert-dot dot-watch"></span><b>Colby McKercher</b> — Named NTH extended squad · final 22 Fri 5pm</span>
+  <span class="alert-item"><span class="alert-dot dot-watch"></span><b>Jack Darling</b> — Named NTH extended squad · final 22 Fri 5pm</span>
+  <span class="alert-item"><span class="alert-dot dot-watch"></span><b>Nick Madden</b> — GWS emergency · ready if required vs WBD (Sat)</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Josh Battle</b> — NOTE: now at Hawthorn, not St Kilda</span>
+  <span class="alert-item"><span class="alert-dot dot-ok"></span><b>Devon Robertson</b> — NOTE: moved from Brisbane to West Coast Eagles</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- FIELD + BENCH -->
+  <div class="field-section">
+    <div class="section-label">Selected Team — Round 1</div>
+
+    <!-- OVAL FIELD -->
+    <div class="oval-wrapper">
+      <div class="field-hline" style="top:20%"></div>
+      <div class="field-hline" style="top:37%"></div>
+      <div class="field-hline" style="top:54%"></div>
+      <div class="field-hline" style="top:71%"></div>
+      <div class="field-center"></div>
+      <div class="field-center-dot"></div>
+
+      <div class="field-zone-label ruck-label">Ruck</div>
+      <div class="field-zone-label tac-label">Tackler</div>
+      <div class="field-zone-label int-label">Interceptor</div>
+      <div class="field-zone-label mid-label">Midfield</div>
+      <div class="field-zone-label fwd-label">Forwards</div>
+
+      <div class="field-zone-score ruck-score">1pt / hitout</div>
+      <div class="field-zone-score tac-score">4pts / tackle</div>
+      <div class="field-zone-score int-score">3pts / intercept</div>
+      <div class="field-zone-score mid-score">1pt / disposal</div>
+      <div class="field-zone-score fwd-score">6pts / goal</div>
+
+      <div id="field-rows-target"></div>
+    </div>
+
+    <!-- TEAM SELECTION STATUS — below field -->
+    <div class="field-status-panel">
+      <div class="sidebar-card" style="margin:0">
+      <div class="sidebar-card-header">⚡ Team Selection — R1</div>
+      <div class="sidebar-card-body">
+
+        <div style="font-size:9px;letter-spacing:1px;font-weight:800;color:rgba(255,77,109,0.8);text-transform:uppercase;margin-bottom:8px">▼ OUT</div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-out">✕</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Hugh McCluggage</div>
+            <div class="inj-desc">Calf strain (OR). Confirmed OUT — Brisbane also on bye R2. Est. back R3.</div>
+            <span class="inj-eta eta-out">OUT R1 · Est. R3</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-out">✕</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Logan Morris</div>
+            <div class="inj-desc">Hand injury (OR). Confirmed OUT — not named in Brisbane squad.</div>
+            <span class="inj-eta eta-out">OUT R1</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-out">✕</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Brent Daniels</div>
+            <div class="inj-desc">On GWS injury list alongside Tom Green (ACL), Aaron Cadman & Sam Taylor. Not named in R1 squad.</div>
+            <span class="inj-eta eta-out">OUT R1</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-out">✕</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Toby Bedford</div>
+            <div class="inj-desc">Hamstring — GWS say weeks away. Not named.</div>
+            <span class="inj-eta eta-out">OUT — WEEKS AWAY</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-out">✕</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Nick Madden</div>
+            <div class="inj-desc">Not named in GWS 25-man squad or emergencies for R1.</div>
+            <span class="inj-eta eta-out">NOT NAMED R1</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-out">✕</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Max King</div>
+            <div class="inj-desc">Not named in St Kilda squad for R1 vs Melbourne.</div>
+            <span class="inj-eta eta-out">OUT R1</span>
+          </div>
+        </div>
+
+        <div style="font-size:9px;letter-spacing:1px;font-weight:800;color:rgba(255,183,0,0.8);text-transform:uppercase;margin:10px 0 8px">▼ EXTENDED BENCH</div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-watch">!</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Hugo Garcia</div>
+            <div class="inj-desc">Named on St Kilda extended bench vs Melbourne (Sun). Could come in if a regular is scratched.</div>
+            <span class="inj-eta" style="background:rgba(255,183,0,0.2);color:var(--accent3)">EXT BENCH — SUNDAY</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-watch">!</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Colby McKercher</div>
+            <div class="inj-desc">Named on North Melbourne extended bench vs Port Adelaide (Sun). Not confirmed in the 22.</div>
+            <span class="inj-eta" style="background:rgba(255,183,0,0.2);color:var(--accent3)">EXT BENCH — SUNDAY</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-watch">!</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Jack Darling</div>
+            <div class="inj-desc">Named on North Melbourne extended bench vs Port Adelaide (Sun). Possible late inclusion.</div>
+            <span class="inj-eta" style="background:rgba(255,183,0,0.2);color:var(--accent3)">EXT BENCH — SUNDAY</span>
+          </div>
+        </div>
+
+        <div style="font-size:9px;letter-spacing:1px;font-weight:800;color:rgba(0,229,160,0.8);text-transform:uppercase;margin:10px 0 8px">▼ NAMED &amp; PLAYING</div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Jarrod Witts</div>
+            <div class="inj-desc">Named Followers, Gold Coast vs West Coast (Sun).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Josh Battle</div>
+            <div class="inj-desc">Named Half Back, Hawthorn vs Essendon (Fri). 150th game milestone.</div>
+            <span class="inj-eta eta-clear">PLAYING ✓ (HAW)</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Sam Flanders</div>
+            <div class="inj-desc">Named Followers, St Kilda vs Melbourne (Sun).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Shannon Neale</div>
+            <div class="inj-desc">Named Forwards, Geelong vs Fremantle (Sat).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Joel Amartey</div>
+            <div class="inj-desc">Named Forwards, Sydney vs Brisbane (Sat).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Max Hall</div>
+            <div class="inj-desc">Named Centre, St Kilda vs Melbourne (Sun).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Harley Reid</div>
+            <div class="inj-desc">Named Followers, West Coast vs Gold Coast (Sun).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Ethan Read</div>
+            <div class="inj-desc">Named Forwards, Gold Coast vs West Coast (Sun).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Devon Robertson</div>
+            <div class="inj-desc">Named Centre (wing), West Coast vs Gold Coast (Sun).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Joel Freijah</div>
+            <div class="inj-desc">Named Half Forwards, Bulldogs vs GWS (Sat).</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+        <div class="inj-item">
+          <div class="inj-icon inj-clear">✓</div>
+          <div class="inj-detail">
+            <div class="inj-player-name">Bayley Fritsch</div>
+            <div class="inj-desc">Named Forwards, Melbourne vs St Kilda (Sun). Cleared after dog bite scare.</div>
+            <span class="inj-eta eta-clear">PLAYING ✓</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- BENCH (top of sidebar) -->
+    <div class="sidebar-card" style="padding:12px 14px 10px">
+      <div class="bench-header" style="margin-bottom:8px">
+        <span class="bench-title">Bench</span>
+        <span class="section-label" style="margin-bottom:0">Full Squad</span>
+      </div>
+      <div class="bench-grid" id="bench-grid-target"></div>
+      <div id="swap-hint">↕ Drag or tap any card to swap field ↔ bench</div>
+    </div>
+
+    <!-- R1 Fixture -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">Round 1 Fixture</div>
+      <div class="fixture-card-body">
+        <div class="fixture-team">
+          <div class="fixture-team-badge" style="background:linear-gradient(135deg,#00e5a0,#00b37a);color:#000">IM</div>
+          <div class="fixture-team-name">Innaloo<br>McShits</div>
+        </div>
+        <div class="fixture-vs-big">VS</div>
+        <div class="fixture-team">
+          <div class="fixture-team-badge" style="background:linear-gradient(135deg,#1a1e28,#2a2f3e);color:#9ca3af;font-size:10px">SC</div>
+          <div class="fixture-team-name">Sanders<br>Chimps</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Season History -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">Season History</div>
+      <div class="sidebar-card-body">
+        <div style="display:flex;flex-wrap:wrap;gap:0">
+          <div class="history-pill"><span style="color:var(--accent3)">2025</span> Competed</div>
+          <div class="history-pill"><span style="color:var(--accent3)">2024</span> Competed</div>
+          <div class="history-pill"><span style="color:var(--accent3)">2023</span> Competed</div>
+          <div class="history-pill"><span style="color:var(--accent3)">2022</span> Season 1</div>
+        </div>
+        <div style="height:8px"></div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.5">
+          Key ruck J Witts has been with the team since Round 1, 2022 — pick #2 overall in the inaugural draft. Long-time captain.
+        </div>
+      </div>
+    </div>
+
+    <!-- Scoring System -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">🎯 Scoring System</div>
+      <div class="sidebar-card-body" style="padding:8px 16px">
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#aaa">RUCK</span>
+            <span style="font-size:12px;color:var(--accent);font-weight:600">1 pt <span style="color:var(--muted)">/ hitout</span></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#aaa">TACKLER</span>
+            <span style="font-size:12px;color:var(--accent);font-weight:600">4 pts <span style="color:var(--muted)">/ tackle</span></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#aaa">INTERCEPTOR</span>
+            <span style="font-size:12px;color:var(--accent);font-weight:600">3 pts <span style="color:var(--muted)">/ intercept</span></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#aaa">MIDFIELD</span>
+            <span style="font-size:12px;color:var(--accent);font-weight:600">1 pt <span style="color:var(--muted)">/ disposal</span></span>
+          </div>
+          <div style="padding:8px 0">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#aaa">FORWARD</span>
+              <div style="text-align:right">
+                <span style="font-size:12px;color:var(--accent);font-weight:600">6 pts <span style="color:var(--muted)">/ goal</span></span><br>
+                <span style="font-size:12px;color:var(--accent);font-weight:600">1 pt <span style="color:var(--muted)">/ behind</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">Status Key</div>
+      <div class="sidebar-card-body">
+        <div class="legend-row">
+          <div class="legend-dot" style="background:var(--accent)"></div>
+          <span><b>✓</b> Confirmed playing R1</span>
+        </div>
+        <div class="legend-row">
+          <div class="legend-dot" style="background:var(--accent2)"></div>
+          <span><b>✕</b> Confirmed injured / out</span>
+        </div>
+        <div class="legend-row">
+          <div class="legend-dot" style="background:var(--accent3)"></div>
+          <span><b>!</b> Injury watch / doubtful</span>
+        </div>
+        <div class="legend-row">
+          <div class="legend-dot" style="background:#4b5563"></div>
+          <span><b>?</b> No current news</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LAST UPDATED -->
+<div class="last-updated" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="live-dot"></div>
+    <span>Injury data: AFL.com.au · ESPN · SEN — Updated 12 March 2026 &nbsp;|&nbsp; ⚠️ Sat/Sun teams ~6:20pm AEDT Thu</span>
+  </div>
+  <button id="logStatsBtn" onclick="openModal()" style="
+    background:var(--accent);color:#000;border:none;
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:1px;padding:6px 14px;border-radius:8px;cursor:pointer;
+    text-transform:uppercase;transition:opacity 0.15s;
+  " onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+    📊 Log Round Stats
+  </button>
+</div>
+
+<!-- STATS MODAL -->
+<div id="statsModal" style="
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+">
+  <div style="
+    background:#1a1e28;border:1px solid #2a2f3e;border-radius:16px;
+    padding:24px;width:min(680px,95vw);max-height:90vh;overflow-y:auto;
+    box-shadow:0 24px 60px rgba(0,0,0,0.6);
+  ">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:2px">Log Round Stats</div>
+        <div style="font-size:12px;color:#6b7280;margin-top:2px">Enter each player's key positional stat — updates 3-game average automatically</div>
+      </div>
+      <button onclick="closeModal()" style="background:none;border:none;color:#6b7280;font-size:22px;cursor:pointer;padding:4px">✕</button>
+    </div>
+
+    <!-- Round selector -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <label style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#9ca3af;font-size:13px;letter-spacing:1px;text-transform:uppercase">Round:</label>
+      <select id="roundSelect" style="background:#0a0c10;border:1px solid #2a2f3e;color:#fff;padding:6px 12px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700">
+        <option value="OR">Opening Round</option>
+        <option value="1" selected>Round 1</option>
+        <option value="2">Round 2</option>
+        <option value="3">Round 3</option>
+        <option value="4">Round 4</option>
+        <option value="5">Round 5</option>
+        <option value="6">Round 6</option>
+        <option value="7">Round 7</option>
+        <option value="8">Round 8</option>
+        <option value="9">Round 9</option>
+        <option value="10">Round 10</option>
+        <option value="11">Round 11</option>
+        <option value="12">Round 12</option>
+        <option value="13">Round 13</option>
+        <option value="14">Round 14</option>
+        <option value="15">Round 15</option>
+        <option value="16">Round 16</option>
+        <option value="17">Round 17</option>
+        <option value="18">Round 18</option>
+        <option value="19">Round 19</option>
+      </select>
+    </div>
+
+    <!-- Player stat inputs -->
+    <div id="statInputs" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+
+    <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end">
+      <button onclick="clearRoundStats()" style="
+        background:rgba(255,77,109,0.15);color:var(--accent2);border:1px solid rgba(255,77,109,0.3);
+        padding:8px 16px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+        font-size:13px;letter-spacing:1px;cursor:pointer;text-transform:uppercase
+      ">Clear Round</button>
+      <button onclick="saveStats()" style="
+        background:var(--accent);color:#000;border:none;
+        padding:8px 20px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+        font-size:13px;letter-spacing:1px;cursor:pointer;text-transform:uppercase
+      ">💾 Save & Update</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLTIP -->
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+//  SQUAD CONFIG — edit this to change players mid-season
+//  To swap a player: change name, club, zone, stat, status, tooltip
+//  Club codes must match a key in CLUBS below
+// ═══════════════════════════════════════════════════════════════════════
+
+const CLUBS = {
+  GCS: { c1:'--gcs', c2:'--gcs2', code:'GCS', label:'Gold Coast', full:'GOLD COAST SUNS' },
+  STK: { c1:'--stk', c2:'--stk2', code:'STK', label:'St Kilda',   full:'ST KILDA' },
+  BRL: { c1:'--brl', c2:'--brl2', code:'BRL', label:'Brisbane',   full:'BRISBANE LIONS' },
+  NTH: { c1:'--nth', c2:'--nth2', code:'NTH', label:'North Melb', full:'NORTH MELBOURNE' },
+  GWS: { c1:'--gws', c2:'--gws2', code:'GWS', label:'Giants',     full:'GWS GIANTS' },
+  MEL: { c1:'--mel', c2:'--mel2', code:'MEL', label:'Melbourne',  full:'MELBOURNE' },
+  WCE: { c1:'--wce', c2:'--wce2', code:'WCE', label:'West Coast', full:'WEST COAST EAGLES' },
+  WBD: { c1:'--wbd', c2:'--wbd2', code:'WBD', label:'Bulldogs',   full:'WESTERN BULLDOGS' },
+  SYD: { c1:'--syd', c2:'--syd2', code:'SYD', label:'Sydney',     full:'SYDNEY SWANS' },
+  GEO: { c1:'--geo', c2:'--geo2', code:'GEO', label:'Geelong',    full:'GEELONG CATS' },
+  HAW: { c1:'--haw', c2:'--haw2', code:'HAW', label:'Hawthorn',   full:'HAWTHORN' },
+};
+
+// Stat definitions — scoring rule display, live score label, 3GA label, pts multiplier
+const STATS = {
+  hitouts:   { rule:'1pt / hitout',              liveLabel:'HIT OUTS · PTS',  avgLabel:'3GA Hitouts',   mult:1, avgKey:'× 1pt = N/A pts avg' },
+  tackles:   { rule:'4pts / tackle',             liveLabel:'TACKLES · PTS',   avgLabel:'3GA Tackles',   mult:4, avgKey:'× 4pts = N/A pts avg' },
+  intercepts:{ rule:'3pts / intercept',          liveLabel:'INTERCEPTS · PTS',avgLabel:'3GA Intercepts',mult:3, avgKey:'× 3pts = N/A pts avg' },
+  disposals: { rule:'1pt / disposal',            liveLabel:'DISPOSALS · PTS', avgLabel:'3GA Disposals', mult:1, avgKey:'× 1pt = N/A pts avg' },
+  goals:     { rule:'6pts / goal · 1pt / behind',liveLabel:'GOALS · PTS',     avgLabel:'3GA Goals',     mult:6, avgKey:'× 6pts = N/A pts avg' },
+};
+
+// Zone → CSS classes for field rows
+const ZONES = {
+  ruck:       { rowClass:'row-ruck zone-ruck',         posTag:'RUCK' },
+  tackler:    { rowClass:'row-tackler zone-tac',        posTag:'TACKLER' },
+  interceptor:{ rowClass:'row-intercept zone-int',      posTag:'INTERCEPTOR' },
+  mid:        { rowClass:'row-mids zone-mid',           posTag:'MID' },
+  forward:    { rowClass:'row-forwards zone-fwd',       posTag:'FWD' },
+};
+
+// Status → badge class and symbol
+const STATUS = {
+  playing: { cls:'status-playing', sym:'✓' },
+  watch:   { cls:'status-watch',   sym:'!' },
+  injured: { cls:'status-injured', sym:'✕' },
+  unknown: { cls:'status-unknown', sym:'?' },
+};
+
+// ── SELECTED 9 (on-field) ────────────────────────────────────────
+// To swap mid-season: change name, club, zone, stat, status, tooltip
+const SELECTED = [
+  {
+    name:'Jarrod Witts', club:'GCS', zone:'ruck', stat:'hitouts',
+    status:'watch',
+    tooltip:'Jarrod Witts — Gold Coast Suns<br>Scoring: <b>1 pt per hitout</b><br>Named GCS extended squad vs WCE (Sun)<br><b style=color:#ffb700>EXTENDED SQUAD !</b>',
+    avg3: null,
+  },
+  {
+    name:'Hugo Garcia', club:'STK', zone:'tackler', stat:'tackles',
+    status:'watch',
+    tooltip:'Hugo Garcia — St Kilda<br>Scoring: <b>4 pts per tackle</b><br>Named extended bench vs Melbourne (Sun)<br><b style=color:#ffb700>EXTENDED BENCH !</b>',
+    avg3: null,
+  },
+  {
+    name:'Josh Battle', club:'HAW', zone:'interceptor', stat:'intercepts',
+    status:'playing',
+    tooltip:'Josh Battle — Hawthorn<br>Scoring: <b>3 pts per intercept possession</b><br>Named HB for Hawthorn vs Essendon (Fri)<br><b style=color:#00e5a0>PLAYING ✓</b>',
+    avg3: null,
+  },
+  {
+    name:'Sam Flanders', club:'STK', zone:'mid', stat:'disposals',
+    status:'playing',
+    tooltip:'Sam Flanders — St Kilda<br>Scoring: <b>1 pt per disposal</b><br>Named Followers vs Melbourne (Sun)<br><b style=color:#00e5a0>PLAYING ✓</b>',
+    avg3: null,
+  },
+  {
+    name:'Hugh McCluggage', club:'BRL', zone:'mid', stat:'disposals',
+    status:'injured',
+    tooltip:'Hugh McCluggage — Brisbane Lions<br>Scoring: <b>1 pt per disposal</b><br>Calf strain (OR). Brisbane bye R2.<br><b style=color:#ff4d6d>OUT R1 · Est. back R3</b>',
+    avg3: null,
+  },
+  {
+    name:'Colby McKercher', club:'NTH', zone:'mid', stat:'disposals',
+    status:'watch',
+    tooltip:'Colby McKercher — North Melbourne<br>Scoring: <b>1 pt per disposal</b><br>Named extended bench vs Port Adelaide (Sun)<br><b style=color:#ffb700>EXTENDED BENCH !</b>',
+    avg3: null,
+  },
+  {
+    name:'Logan Morris', club:'BRL', zone:'forward', stat:'goals',
+    status:'injured',
+    tooltip:'Logan Morris — Brisbane Lions<br>Scoring: <b>6pts / goal · 1pt / behind</b><br>Hand injury sustained Opening Round<br><b style=color:#ff4d6d>OUT R1</b>',
+    avg3: null,
+  },
+  {
+    name:'Shannon Neale', club:'GEO', zone:'forward', stat:'goals',
+    status:'playing',
+    tooltip:'Shannon Neale — Geelong Cats<br>Scoring: <b>6pts / goal · 1pt / behind</b><br>Named Forwards vs Fremantle (Sat)<br><b style=color:#00e5a0>PLAYING ✓</b>',
+    avg3: null,
+  },
+  {
+    name:'Joel Amartey', club:'SYD', zone:'forward', stat:'goals',
+    status:'playing',
+    tooltip:'Joel Amartey — Sydney Swans<br>Scoring: <b>6pts / goal · 1pt / behind</b><br>Named Forwards, Sydney vs Brisbane (Sat)<br><b style=color:#00e5a0>PLAYING ✓</b>',
+    avg3: null,
+  },
+];
+
+// ── BENCH SQUAD ──────────────────────────────────────────────────
+// zone is used for display label and stat type only (not field placement)
+const BENCH = [
+  { name:'Nick Madden',     club:'GWS', zone:'ruck',       stat:'hitouts',   status:'injured', avg3:null },
+  { name:'Ethan Read',      club:'GCS', zone:'ruck',       stat:'hitouts',   status:'playing', avg3:null },
+  { name:'Toby Bedford',    club:'GWS', zone:'tackler',    stat:'tackles',   status:'injured', avg3:null },
+  { name:'Devon Robertson', club:'WCE', zone:'tackler',    stat:'tackles',   status:'playing', avg3:null },
+  { name:'Harley Reid',     club:'WCE', zone:'mid',        stat:'disposals', status:'playing', avg3:null },
+  { name:'Joel Freijah',    club:'WBD', zone:'mid',        stat:'disposals', status:'playing', avg3:null },
+  { name:'Max Hall',        club:'STK', zone:'mid',        stat:'disposals', status:'playing', avg3:null },
+  { name:'Max King',        club:'STK', zone:'forward',    stat:'goals',     status:'injured', avg3:null },
+  { name:'Bayley Fritsch',  club:'MEL', zone:'forward',    stat:'goals',     status:'playing', avg3:null },
+  { name:'Jack Darling',    club:'NTH', zone:'forward',    stat:'goals',     status:'watch',   avg3:null },
+  { name:'Brent Daniels',   club:'GWS', zone:'forward',    stat:'goals',     status:'injured', avg3:null },
+];
+
+// ═══════════════════════════════════════════════════════════════════════
+//  RENDER FUNCTIONS — no need to edit below this line for player changes
+// ═══════════════════════════════════════════════════════════════════════
+
+
+// ═══════════════════════════════════════════════════════════════════════
+//  SWAP SYSTEM — click/tap to select, click/tap target to swap
+//  Works identically on desktop and mobile. No HTML5 drag API.
+// ═══════════════════════════════════════════════════════════════════════
+
+// Inject swap CSS
+(function() {
+  const s = document.createElement('style');
+  s.textContent = `
+    .player-card, .bench-card {
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, outline 0.15s, opacity 0.15s;
+    }
+    .swap-selected {
+      outline: 2px solid #ffb700 !important;
+      box-shadow: 0 0 20px #ffb70060 !important;
+      animation: tapPulse 0.8s ease infinite alternate;
+    }
+    .swap-target-ok {
+      outline: 2px solid #00e5a0 !important;
+      box-shadow: 0 0 16px #00e5a060 !important;
+    }
+    .swap-target-no {
+      outline: 2px solid #ff4d6d44 !important;
+      opacity: 0.4;
+      cursor: not-allowed !important;
+    }
+    @keyframes tapPulse {
+      from { box-shadow: 0 0 8px #ffb70040; }
+      to   { box-shadow: 0 0 22px #ffb700aa; }
+    }
+    #swap-toast {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      background: #1a1e28; border: 1px solid #2a2f3e; border-radius: 10px;
+      padding: 10px 20px; font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; letter-spacing: 0.5px; color: #fff;
+      z-index: 9999; pointer-events: none;
+      opacity: 0; transition: opacity 0.2s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
+    #swap-toast.visible { opacity: 1; }
+    #swap-toast.toast-ok   { border-color: #00e5a0; color: #00e5a0; }
+    #swap-toast.toast-warn { border-color: #ffb700; color: #ffb700; }
+    #swap-toast.toast-err  { border-color: #ff4d6d; color: #ff4d6d; }
+    #swap-hint {
+      text-align: center; font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 1px; color: #374151;
+      padding: 6px 0 2px; text-transform: uppercase;
+    }
+  `;
+  document.head.appendChild(s);
+})();
+
+// Toast
+let _toastTimer = null;
+function showToast(msg, type='ok') {
+  let t = document.getElementById('swap-toast');
+  if (!t) { t = document.createElement('div'); t.id = 'swap-toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.className = `visible toast-${type}`;
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => t.className = '', 2800);
+}
+
+// Selection state
+let _sel = { name: null, source: null, zone: null, el: null };
+
+function clearSel() {
+  if (_sel.el) _sel.el.classList.remove('swap-selected');
+  // also clear any target highlights
+  document.querySelectorAll('.swap-target-ok, .swap-target-no').forEach(el => {
+    el.classList.remove('swap-target-ok', 'swap-target-no');
+  });
+  _sel = { name: null, source: null, zone: null, el: null };
+}
+
+function highlightTargets(sourceZone, sourceType) {
+  // Highlight valid/invalid targets on the OTHER side
+  if (sourceType === 'bench') {
+    document.querySelectorAll('.player-card').forEach(card => {
+      const nameEl = card.querySelector('.player-name');
+      if (!nameEl) return;
+      const p = SELECTED.find(p => p.name === nameEl.textContent.trim());
+      if (!p) return;
+      card.classList.add(p.zone === sourceZone ? 'swap-target-ok' : 'swap-target-no');
+    });
+  } else {
+    document.querySelectorAll('.bench-card').forEach(card => {
+      const nameEl = card.querySelector('.bench-name');
+      if (!nameEl) return;
+      const p = BENCH.find(p => p.name === nameEl.textContent.trim());
+      if (!p) return;
+      card.classList.add(p.zone === sourceZone ? 'swap-target-ok' : 'swap-target-no');
+    });
+  }
+}
+
+// ── Core swap ────────────────────────────────────────────────────────
+function swapPlayers(fieldName, benchName) {
+  const fi = SELECTED.findIndex(p => p.name === fieldName);
+  const bi = BENCH.findIndex(p => p.name === benchName);
+  if (fi === -1 || bi === -1) { showToast('Could not find players', 'err'); return; }
+
+  const fp = SELECTED[fi];
+  const bp = BENCH[bi];
+
+  if (fp.zone !== bp.zone) {
+    showToast(`✗ ${fp.zone.toUpperCase()} can only swap with ${fp.zone.toUpperCase()}`, 'err');
+    return;
+  }
+
+  if (bp.status === 'injured') showToast(`⚠ ${bp.name} is injured — swapped anyway`, 'warn');
+  else showToast(`✓ ${bp.name} → Field  ·  ${fp.name} → Bench`, 'ok');
+
+  SELECTED[fi] = bp;
+  BENCH[bi]    = fp;
+  saveSquadOrder();
+  renderSquad();
+  updateAllChips();
+  setTimeout(recalcTotal, 50);
+}
+
+// ── Attach click handlers ────────────────────────────────────────────
+function attachDragHandlers() {
+  // Field cards
+  document.querySelectorAll('.player-card').forEach(card => {
+    const nameEl = card.querySelector('.player-name');
+    if (!nameEl) return;
+    const name = nameEl.textContent.trim();
+    const player = SELECTED.find(p => p.name === name);
+    if (!player) return;
+
+    card.addEventListener('click', e => {
+      e.stopPropagation();
+
+      // A bench player is already selected — try to swap
+      if (_sel.source === 'bench') {
+        if (player.zone !== _sel.zone) {
+          showToast(`✗ ${_sel.zone.toUpperCase()} can only swap with ${_sel.zone.toUpperCase()}`, 'err');
+          clearSel();
+          return;
+        }
+        swapPlayers(name, _sel.name);
+        clearSel();
+        return;
+      }
+
+      // This field card is already selected — deselect
+      if (_sel.source === 'field' && _sel.name === name) {
+        clearSel();
+        return;
+      }
+
+      // Select this field card
+      clearSel();
+      _sel = { name, source: 'field', zone: player.zone, el: card };
+      card.classList.add('swap-selected');
+      highlightTargets(player.zone, 'field');
+      showToast(`${name} selected — tap a ${player.zone} bench player`, 'warn');
+    });
+  });
+
+  // Bench cards
+  document.querySelectorAll('.bench-card').forEach(card => {
+    const nameEl = card.querySelector('.bench-name');
+    if (!nameEl) return;
+    const name = nameEl.textContent.trim();
+    const player = BENCH.find(p => p.name === name);
+    if (!player) return;
+
+    card.addEventListener('click', e => {
+      e.stopPropagation();
+
+      // A field player is already selected — try to swap
+      if (_sel.source === 'field') {
+        if (player.zone !== _sel.zone) {
+          showToast(`✗ ${_sel.zone.toUpperCase()} can only swap with ${_sel.zone.toUpperCase()}`, 'err');
+          clearSel();
+          return;
+        }
+        swapPlayers(_sel.name, name);
+        clearSel();
+        return;
+      }
+
+      // This bench card is already selected — deselect
+      if (_sel.source === 'bench' && _sel.name === name) {
+        clearSel();
+        return;
+      }
+
+      // Select this bench card
+      clearSel();
+      _sel = { name, source: 'bench', zone: player.zone, el: card };
+      card.classList.add('swap-selected');
+      highlightTargets(player.zone, 'bench');
+      showToast(`${name} selected — tap a ${player.zone} field player`, 'warn');
+    });
+  });
+
+}
+
+// Deselect when clicking anywhere outside a card (added once only)
+document.addEventListener('click', clearSel);
+
+// ── Persist squad order to localStorage ──────────────────────────────
+
+const SQUAD_STORAGE_KEY = 'mcshits_squad_2026';
+
+function saveSquadOrder() {
+  try {
+    localStorage.setItem(SQUAD_STORAGE_KEY, JSON.stringify({
+      selected: SELECTED.map(p => p.name),
+      bench:    BENCH.map(p => p.name),
+    }));
+  } catch(e) {}
+}
+
+function loadSquadOrder() {
+  try {
+    const raw = localStorage.getItem(SQUAD_STORAGE_KEY);
+    if (!raw) return;
+    const { selected, bench } = JSON.parse(raw);
+    if (!selected || !bench) return;
+
+    const allPlayers = [...SELECTED, ...BENCH];
+    const byName = {};
+    allPlayers.forEach(p => byName[p.name] = p);
+
+    const newSelected = selected.map(n => byName[n]).filter(Boolean);
+    const newBench    = bench.map(n => byName[n]).filter(Boolean);
+
+    if (newSelected.length === SELECTED.length && newBench.length === BENCH.length) {
+      SELECTED.splice(0, SELECTED.length, ...newSelected);
+      BENCH.splice(0, BENCH.length, ...newBench);
+    }
+  } catch(e) {
+    // Corrupt storage — clear it and start fresh
+    localStorage.removeItem(SQUAD_STORAGE_KEY);
+  }
+}
+
+function buildFieldCard(p) {
+  const club   = CLUBS[p.club] || CLUBS.GCS;
+  const stat   = STATS[p.stat] || STATS.disposals;
+  const status = STATUS[p.status] || STATUS.unknown;
+  const scoreId = 'score-' + p.name.replace(/\s+/g,'-').toLowerCase();
+  const injClass = p.status === 'injured' ? ' injured-card' : '';
+  const tooltip = p.tooltip || `${p.name} — ${club.full}<br>Scoring: <b>${stat.rule}</b>`;
+  return `<div class="player-card${injClass}" onmouseenter="showTip(event,'${tooltip.replace(/'/g,"&#39;")}')" onmouseleave="hideTip()">
+    <div class="club-strip" style="background:linear-gradient(90deg,var(${club.c1}),var(${club.c2}))"></div>
+    <div class="card-round-score" id="crs-${scoreId}">0</div>
+    <div class="status-badge ${status.cls}">${status.sym}</div>
+    <div class="club-badge">
+      <div class="cb-bg" style="background:var(${club.c1})"></div>
+      <span class="cb-code">${club.code}</span>
+      <span class="cb-label">${club.label}</span>
+    </div>
+    <div class="player-name">${p.name}</div>
+    <div class="player-club">${club.full}</div>
+    <div class="pos-tag">${ZONES[p.zone].posTag}</div>
+    <div class="score-rule">${stat.rule}</div>
+    <div class="live-score zero" data-player="${p.name}" id="${scoreId}">0</div>
+    <div class="live-score-label">${stat.liveLabel}</div>
+    <div class="avg-chip"><span class="avg-label">${stat.avgLabel}</span><span class="avg-val na">${p.avg3 !== null ? p.avg3 : 'N/A'}</span><span class="avg-pts">${stat.avgKey}</span></div>
+  </div>`;
+}
+
+function buildBenchCard(p, idx) {
+  const club   = CLUBS[p.club] || CLUBS.GCS;
+  const stat   = STATS[p.stat] || STATS.disposals;
+  const status = STATUS[p.status] || STATUS.unknown;
+  const delay  = (0.05 + idx * 0.02).toFixed(2);
+  const avgShort = stat.avgLabel.replace('3GA ','');
+  const injBadge = p.status === 'injured' ? ' badge-injured' : '';
+  return `<div class="bench-card" style="animation-delay:${delay}s" title="${p.name} — ${club.full} — ${ZONES[p.zone].posTag}${p.status==='injured'?' — INJURED':''}">
+    <div class="club-strip" style="height:3px;position:absolute;top:0;left:0;right:0;background:linear-gradient(90deg,var(${club.c1}),var(${club.c2}));border-radius:10px 10px 0 0"></div>
+    <div class="bench-badge${injBadge}"><div class="cb-bg" style="background:var(${club.c1})"></div><span class="cb-code">${club.code}</span><span class="cb-label">${club.label}</span></div>
+    <div class="bench-name">${p.name}</div>
+    <div class="bench-avg">3GA ${avgShort}: ${p.avg3 !== null ? p.avg3 : 'N/A'}</div>
+    <div class="bench-club">${club.full.length > 12 ? club.code+' '+club.label : club.full}</div>
+    <div class="status-badge ${STATUS[p.status].cls}" style="width:16px;height:16px;top:5px;right:4px;font-size:8px;position:absolute">${STATUS[p.status].sym}</div>
+  </div>`;
+}
+
+function renderSquad() {
+  // ── Field: group selected players by zone, render one row per zone ──
+  const zoneOrder = ['ruck','tackler','interceptor','mid','forward'];
+  const byZone = {};
+  zoneOrder.forEach(z => byZone[z] = []);
+  SELECTED.forEach(p => { if (byZone[p.zone]) byZone[p.zone].push(p); });
+
+  const fieldTarget = document.getElementById('field-rows-target');
+  if (fieldTarget) {
+    fieldTarget.innerHTML = zoneOrder.map(zone => {
+      const players = byZone[zone];
+      if (!players.length) return '';
+      const zoneInfo = ZONES[zone];
+      return `<div class="player-row ${zoneInfo.rowClass}">${players.map(buildFieldCard).join('')}</div>`;
+    }).join('');
+  }
+
+  // ── Bench ──
+  const benchTarget = document.getElementById('bench-grid-target');
+  if (benchTarget) {
+    benchTarget.innerHTML = BENCH.map((p,i) => buildBenchCard(p,i)).join('');
+  }
+
+  // Reset live scores
+  recalcTotal();
+
+  // Attach drag & tap handlers to freshly rendered cards
+  setTimeout(attachDragHandlers, 30);
+}
+
+// ── Live score update functions (top-level so API engine can call them) ──
+
+function updatePlayerScore(playerName, score) {
+  const id = 'score-' + playerName.replace(/\s+/g, '-').toLowerCase();
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = score;
+  el.classList.remove('zero', 'scoring');
+  if (score === 0 || score === null) el.classList.add('zero');
+  else el.classList.add('scoring');
+  // Also update the small card badge top-left
+  const crs = document.getElementById('crs-' + id);
+  if (crs) {
+    crs.textContent = score;
+    crs.classList.toggle('scoring', score > 0);
+  }
+  recalcTotal();
+}
+
+function recalcTotal() {
+  const scores = document.querySelectorAll('.live-score[data-player]');
+  let total = 0;
+  scores.forEach(el => { total += parseInt(el.textContent) || 0; });
+  const totalEl = document.getElementById('total-round-score');
+  if (totalEl) totalEl.textContent = total;
+}
+
+// Expose globally
+window.updatePlayerScore = updatePlayerScore;
+window.recalcTotal = recalcTotal;
+
+// Run on load — restore any saved swaps first, then render
+document.addEventListener('DOMContentLoaded', () => {
+  loadSquadOrder();
+  renderSquad();
+});
+
+  const tip = document.getElementById('tooltip');
+
+  function showTip(e, html) {
+    tip.innerHTML = html;
+    tip.classList.add('visible');
+    moveTip(e);
+  }
+
+  function hideTip() {
+    tip.classList.remove('visible');
+  }
+
+  document.addEventListener('mousemove', e => {
+    if (tip.classList.contains('visible')) moveTip(e);
+  });
+
+  function moveTip(e) {
+    const x = e.clientX + 14;
+    const y = e.clientY + 14;
+    const w = tip.offsetWidth;
+    const h = tip.offsetHeight;
+    tip.style.left = (x + w > window.innerWidth ? x - w - 28 : x) + 'px';
+    tip.style.top  = (y + h > window.innerHeight ? y - h - 28 : y) + 'px';
+  }
+
+  // Stagger animations
+  document.querySelectorAll('.player-card').forEach((c, i) => {
+    c.style.animationDelay = (i * 0.06) + 's';
+  });
+
+  // ── STATS SYSTEM ──────────────────────────────────────────────────
+  // Player definitions: name, stat label, stat unit, position key
+  const PLAYERS = [
+    { name:'Jarrod Witts',     stat:'Hitouts',     unit:'HO',   pos:'ruck',      selected:true  },
+    { name:'Hugo Garcia',      stat:'Tackles',     unit:'TK',   pos:'tackler',   selected:true  },
+    { name:'Josh Battle',      stat:'Intercepts',  unit:'INT',  pos:'intercept', selected:true  },
+    { name:'Sam Flanders',     stat:'Disposals',   unit:'D',    pos:'mid',       selected:true  },
+    { name:'Hugh McCluggage',  stat:'Disposals',   unit:'D',    pos:'mid',       selected:true  },
+    { name:'Colby McKercher',  stat:'Disposals',   unit:'D',    pos:'mid',       selected:true  },
+    { name:'Logan Morris',     stat:'Goals',       unit:'G',    pos:'fwd',       selected:true  },
+    { name:'Shannon Neale',    stat:'Goals',       unit:'G',    pos:'fwd',       selected:true  },
+    { name:'Joel Amartey',     stat:'Goals',       unit:'G',    pos:'fwd',       selected:true  },
+    { name:'Nick Madden',      stat:'Hitouts',     unit:'HO',   pos:'ruck',      selected:false },
+    { name:'Ethan Read',       stat:'Hitouts',     unit:'HO',   pos:'ruck',      selected:false },
+    { name:'Toby Bedford',     stat:'Tackles',     unit:'TK',   pos:'tackler',   selected:false },
+    { name:'Devon Robertson',  stat:'Tackles',     unit:'TK',   pos:'tackler',   selected:false },
+    { name:'Harley Reid',      stat:'Disposals',   unit:'D',    pos:'mid',       selected:false },
+    { name:'Joel Freijah',     stat:'Disposals',   unit:'D',    pos:'mid',       selected:false },
+    { name:'Max Hall',         stat:'Disposals',   unit:'D',    pos:'mid',       selected:false },
+    { name:'Max King',         stat:'Goals',       unit:'G',    pos:'fwd',       selected:false },
+    { name:'Bayley Fritsch',   stat:'Goals',       unit:'G',    pos:'fwd',       selected:false },
+    { name:'Jack Darling',     stat:'Goals',       unit:'G',    pos:'fwd',       selected:false },
+    { name:'Brent Daniels',    stat:'Goals',       unit:'G',    pos:'fwd',       selected:false },
+  ];
+
+  const POS_COLOURS = {
+    ruck:      '#00e5a0',
+    tackler:   '#ffb700',
+    intercept: '#c084fc',
+    mid:       '#38bdf8',
+    fwd:       '#ff4d6d',
+  };
+
+  // Load stats from localStorage
+  function loadStats() {
+    try { return JSON.parse(localStorage.getItem('mcshits_stats') || '{}'); } catch(e) { return {}; }
+  }
+  function saveToStorage(data) {
+    localStorage.setItem('mcshits_stats', JSON.stringify(data));
+  }
+
+  // Compute 3-game average for a player
+  function get3GA(playerName) {
+    const data = loadStats();
+    const rounds = Object.keys(data).sort((a, b) => {
+      if (a === 'OR') return -1;
+      if (b === 'OR') return 1;
+      return Number(a) - Number(b);
+    });
+    // Get last 3 rounds where this player has a value
+    const vals = [];
+    for (let i = rounds.length - 1; i >= 0 && vals.length < 3; i--) {
+      const v = data[rounds[i]]?.[playerName];
+      if (v !== undefined && v !== null && v !== '') vals.push(Number(v));
+    }
+    if (vals.length === 0) return null;
+    const avg = vals.reduce((a,b) => a+b, 0) / vals.length;
+    return avg % 1 === 0 ? avg : avg.toFixed(1);
+  }
+
+  // Update all avg chips on the page
+  function updateAllChips() {
+    PLAYERS.forEach(p => {
+      const avg = get3GA(p.name);
+      const colour = POS_COLOURS[p.pos];
+      const display = avg !== null ? avg : null;
+      const key = p.name.replace(/\s+/g, '_');
+
+      // On-field card chips
+      document.querySelectorAll('.avg-chip').forEach(chip => {
+        const card = chip.closest('.player-card');
+        if (!card) return;
+        const nameEl = card.querySelector('.player-name');
+        if (!nameEl || nameEl.textContent.trim() !== p.name) return;
+        const valEl = chip.querySelector('.avg-val');
+        if (!valEl) return;
+        if (display !== null) {
+          valEl.textContent = display;
+          valEl.classList.remove('na');
+          valEl.style.color = colour;
+          chip.style.borderColor = colour + '44';
+          chip.style.background = colour + '18';
+        } else {
+          valEl.textContent = 'N/A';
+          valEl.classList.add('na');
+          valEl.style.color = '';
+          chip.style.borderColor = '';
+          chip.style.background = '';
+        }
+      });
+
+      // Bench avg labels
+      document.querySelectorAll('.bench-avg').forEach(el => {
+        const card = el.closest('.bench-card');
+        if (!card) return;
+        const nameEl = card.querySelector('.bench-name');
+        if (!nameEl || nameEl.textContent.trim() !== p.name) return;
+        const prefix = `3GA ${p.stat}:`;
+        el.textContent = display !== null ? `${prefix} ${display}` : `${prefix} N/A`;
+        if (display !== null) { el.style.color = colour; el.style.opacity = '0.9'; }
+        else { el.style.color = ''; el.style.opacity = ''; }
+      });
+    });
+  }
+
+  // Modal open/close
+  function openModal() {
+    const modal = document.getElementById('statsModal');
+    modal.style.display = 'flex';
+    buildInputs();
+  }
+  function closeModal() {
+    document.getElementById('statsModal').style.display = 'none';
+  }
+  document.getElementById('statsModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function buildInputs() {
+    const container = document.getElementById('statInputs');
+    const data = loadStats();
+    const round = document.getElementById('roundSelect').value;
+    const roundData = data[round] || {};
+
+    container.innerHTML = '';
+
+    const sections = ['Selected', 'Bench'];
+    [true, false].forEach((isSelected, si) => {
+      const header = document.createElement('div');
+      header.style.cssText = 'grid-column:1/-1;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;color:#6b7280;text-transform:uppercase;padding:8px 0 4px;border-top:1px solid #2a2f3e;margin-top:' + (si === 0 ? '0' : '4px');
+      header.textContent = si === 0 ? '▸ Selected 9' : '▸ Bench';
+      container.appendChild(header);
+
+      PLAYERS.filter(p => p.selected === isSelected).forEach(p => {
+        const colour = POS_COLOURS[p.pos];
+        const val = roundData[p.name] ?? '';
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;align-items:center;gap:8px;background:#0a0c10;border:1px solid #2a2f3e;border-radius:8px;padding:8px 10px';
+        row.innerHTML = `
+          <div style="flex:1;min-width:0">
+            <div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div>
+            <div style="font-size:10px;color:${colour};font-weight:600;letter-spacing:0.5px">${p.stat}</div>
+          </div>
+          <input type="number" min="0" step="1" placeholder="—"
+            data-player="${p.name}" value="${val}"
+            style="width:56px;background:#1a1e28;border:1px solid #2a2f3e;border-radius:6px;
+                   color:#fff;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:16px;
+                   text-align:center;padding:4px 6px;outline:none"
+            onfocus="this.style.borderColor='${colour}'"
+            onblur="this.style.borderColor='#2a2f3e'"
+          >
+        `;
+        container.appendChild(row);
+      });
+    });
+
+    document.getElementById('roundSelect').onchange = buildInputs;
+  }
+
+  function saveStats() {
+    const round = document.getElementById('roundSelect').value;
+    const inputs = document.querySelectorAll('#statInputs input[data-player]');
+    const data = loadStats();
+    if (!data[round]) data[round] = {};
+    inputs.forEach(inp => {
+      const v = inp.value.trim();
+      if (v !== '') data[round][inp.dataset.player] = Number(v);
+    });
+    saveToStorage(data);
+    updateAllChips();
+    closeModal();
+
+    // Flash confirmation
+    const btn = document.getElementById('logStatsBtn');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Saved!';
+    btn.style.background = '#00b37a';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = 'var(--accent)'; }, 2000);
+  }
+
+  function clearRoundStats() {
+    const round = document.getElementById('roundSelect').value;
+    if (!confirm(`Clear all stats for ${round === 'OR' ? 'Opening Round' : 'Round ' + round}?`)) return;
+    const data = loadStats();
+    delete data[round];
+    saveToStorage(data);
+    buildInputs();
+    updateAllChips();
+  }
+
+  // Init on load
+  updateAllChips();
+
+// ═══════════════════════════════════════════════════════════════════════
+//  ⚡ AUTO-STATS ENGINE
+//  Source: AFL Fantasy API (player IDs) + Champion Data post-game stats
+//  Squiggle API: game state (which games are done)
+//  Polls every 5 minutes. Falls back to manual entry modal if API fails.
+//
+//  ─── ROUND UPDATE ───────────────────────────────────────────────────
+//  Change CURRENT_ROUND to the current round each week.
+//  IMPORTANT: Also update SELECTED[] squad at top if players change.
+// ═══════════════════════════════════════════════════════════════════════
+
+const CURRENT_ROUND  = 1;
+const CURRENT_SEASON = 2026;
+const POLL_MS        = 5 * 60 * 1000; // 5 minutes
+
+// CORS proxy for endpoints that block browser requests
+const PROXY = 'https://corsproxy.io/?url=';
+
+// ── OPPONENT SHEET CONFIG ────────────────────────────────────────────
+// Update OPPONENT_NAME each round to match the team name as it appears
+// in the column header of the RdN tab in the league sheet.
+const SHEET_ID      = '1xiJ47oxyv2iUruAvQ9TMs_GEM6cmWPeO-QaHSWS5RA4';
+const OPPONENT_NAME = 'Sanders Chimps'; // ← update each round
+
+async function fetchOpponentScore() {
+  const sheetName = 'Rd' + CURRENT_ROUND;
+  const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
+              '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(sheetName);
+  const oppEl    = document.getElementById('opp-round-score');
+  const statusEl = document.getElementById('opp-sheet-status');
+  const nameEl   = document.getElementById('opp-name-label');
+  if (nameEl) nameEl.textContent = OPPONENT_NAME;
+  try {
+    if (statusEl) statusEl.textContent = '↻';
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    // Parse CSV
+    const rows = text.trim().split('\n').map(r =>
+      r.split(',').map(c => c.replace(/^"|"$/g,'').trim())
+    );
+    // Find opponent column — search first 4 rows for their name keyword
+    const oppWords = OPPONENT_NAME.toLowerCase().split(' ');
+    let colIdx = -1;
+    for (let r = 0; r < Math.min(4, rows.length) && colIdx === -1; r++) {
+      colIdx = rows[r].findIndex(cell =>
+        oppWords.some(w => w.length > 2 && cell.toLowerCase().includes(w))
+      );
+    }
+    if (colIdx === -1) {
+      if (statusEl) statusEl.textContent = '?';
+      console.warn('Opponent column not found in sheet. Check OPPONENT_NAME matches sheet header.');
+      return;
+    }
+    // Scan from bottom up — find last non-empty numeric value in that col or adjacent col
+    let total = null;
+    for (let r = rows.length - 1; r >= 0 && total === null; r--) {
+      for (const ci of [colIdx, colIdx + 1]) {
+        if (ci < rows[r].length) {
+          const n = parseFloat(rows[r][ci]);
+          if (!isNaN(n) && n >= 0) { total = n; break; }
+        }
+      }
+    }
+    if (total !== null) {
+      if (oppEl) oppEl.textContent = total;
+      if (statusEl) { statusEl.textContent = '✓'; statusEl.style.color = 'rgba(0,229,160,0.5)'; }
+    } else {
+      if (oppEl) oppEl.textContent = '0';
+      if (statusEl) { statusEl.textContent = '✓'; statusEl.style.color = 'rgba(0,229,160,0.5)'; }
+    }
+  } catch(e) {
+    if (statusEl) { statusEl.textContent = '✗'; statusEl.style.color = 'rgba(255,77,109,0.6)'; }
+    console.warn('Opponent sheet fetch failed:', e.message);
+  }
+}
+
+// Squiggle team names → our club codes
+const SQ_CLUBS = {
+  'Gold Coast':'GCS','St Kilda':'STK','Brisbane':'BRL',
+  'North Melbourne':'NTH','GWS':'GWS','Greater Western Sydney':'GWS',
+  'Melbourne':'MEL','West Coast':'WCE','Western Bulldogs':'WBD',
+  'Sydney':'SYD','Geelong':'GEO','Hawthorn':'HAW',
+  'Essendon':'ESS','Carlton':'CAR','Collingwood':'COL',
+  'Richmond':'RIC','Fremantle':'FRE','Adelaide':'ADE','Port Adelaide':'PTA',
+};
+
+// How we turn raw Champion Data stats into Flogs of Fantasy points
+function calcPoints(player, s) {
+  if (!s) return null;
+  const ho  = s.HO  ?? s.hitouts             ?? 0;
+  const tk  = s.TK  ?? s.tackles             ?? 0;
+  const ip  = s.IP  ?? s.intercept_possessions ?? s.intercepts ?? 0;
+  const d   = s.D   ?? s.disposals            ?? 0;
+  const g   = s.G   ?? s.goals               ?? 0;
+  const b   = s.B   ?? s.behinds             ?? 0;
+  switch (player.stat) {
+    case 'hitouts':    return ho;
+    case 'tackles':    return tk * 4;
+    case 'intercepts': return ip * 3;
+    case 'disposals':  return d;
+    case 'goals':      return g * 6 + b;
+    default:           return 0;
+  }
+}
+
+// Internal state
+let _gameState    = {};    // clubCode → { state:'scheduled'|'live'|'complete', sqId }
+let _aflIds       = {};    // playerName → AFL Fantasy player ID
+let _lastUpdate   = null;
+
+// ── UI helpers ────────────────────────────────────────────────────────
+function apiPulse(colour) {
+  const el = document.getElementById('api-pulse');
+  if (el) el.style.background = colour;
+}
+function apiStatus(msg, colour) {
+  const el = document.getElementById('api-status-text');
+  if (el) { el.textContent = msg; el.style.color = colour || '#6b7280'; }
+  apiPulse(colour === '#00e5a0' ? '#00e5a0' : colour === '#ff4d6d' ? '#ff4d6d' : colour === '#ffb700' ? '#ffb700' : colour === '#38bdf8' ? '#38bdf8' : '#4b5563');
+}
+
+// ── Step 1: Squiggle → which games are done this round ───────────────
+async function fetchGameState() {
+  try {
+    const r = await fetch(
+      `https://api.squiggle.com.au/?q=games;year=${CURRENT_SEASON};round=${CURRENT_ROUND}`,
+      { headers:{ 'Accept':'application/json', 'User-Agent':'InnaLooMcShitsDashboard/1.0 contact:leightonhoward15@gmail.com' } }
+    );
+    if (!r.ok) throw new Error(r.status);
+    const { games = [] } = await r.json();
+    _gameState = {};
+    games.forEach(g => {
+      const state = g.complete === 100 ? 'complete' : g.complete > 0 ? 'live' : 'scheduled';
+      [g.hteam, g.ateam].forEach(team => {
+        const code = SQ_CLUBS[team];
+        if (code) _gameState[code] = { state, complete: g.complete, sqId: g.id };
+      });
+    });
+    return games;
+  } catch(e) {
+    console.warn('[Stats Engine] Squiggle failed:', e.message);
+    return [];
+  }
+}
+
+// ── Step 2: Resolve AFL Fantasy player IDs (cached in localStorage) ──
+async function resolveAflIds() {
+  const stored = localStorage.getItem('afl_player_ids_2026');
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      if (Object.keys(parsed).length > 5) { _aflIds = parsed; return; }
+    } catch(e) {}
+  }
+  try {
+    const r = await fetch('https://fantasy.afl.com.au/api/players');
+    if (!r.ok) throw new Error(r.status);
+    const body = await r.json();
+    const list = body.players || body;
+    if (!Array.isArray(list)) throw new Error('unexpected shape');
+    const squad = [...SELECTED, ...BENCH];
+    list.forEach(p => {
+      const full = `${p.first_name} ${p.last_name}`.trim();
+      const match = squad.find(s => s.name.toLowerCase() === full.toLowerCase());
+      if (match) _aflIds[match.name] = p.id;
+    });
+    localStorage.setItem('afl_player_ids_2026', JSON.stringify(_aflIds));
+    console.log(`[Stats Engine] Resolved ${Object.keys(_aflIds).length} AFL Fantasy player IDs`);
+  } catch(e) {
+    console.warn('[Stats Engine] Could not fetch AFL Fantasy player list:', e.message);
+  }
+}
+
+// ── Step 3: Fetch raw stats for one player (tries 3 methods) ─────────
+async function fetchRawStats(player) {
+  const pid = _aflIds[player.name];
+
+  // Method A — AFL Fantasy player round stats (no auth required for public data)
+  if (pid) {
+    for (const url of [
+      `https://fantasy.afl.com.au/api/players/${pid}?round=${CURRENT_ROUND}&season=${CURRENT_SEASON}`,
+      `https://fantasy.afl.com.au/api/players/${pid}/fixture?season=${CURRENT_SEASON}`,
+    ]) {
+      try {
+        const r = await fetch(url);
+        if (!r.ok) continue;
+        const d = await r.json();
+        // Walk common response shapes
+        const raw = d?.stats?.rounds?.[CURRENT_ROUND]
+                 || d?.player?.stats
+                 || d?.round_stats
+                 || d?.stats
+                 || null;
+        if (raw && Object.keys(raw).length > 2) return raw;
+      } catch(e) {}
+    }
+  }
+
+  // Method B — AFL.com.au match stats via CORS proxy (Champion Data, post-game)
+  // Requires knowing the AFL match ID — Squiggle doesn't give AFL IDs directly,
+  // but AFL.com.au match pages are at /matches/{home}-v-{away}-r{round}-{year}
+  const gameInfo = _gameState[player.club];
+  if (gameInfo?.state === 'complete') {
+    try {
+      // AFL Fantasy all-player round scores (structure varies by season)
+      const url = `https://fantasy.afl.com.au/api/player_rounds?round=${CURRENT_ROUND}&season=${CURRENT_SEASON}`;
+      const r = await fetch(`${PROXY}${encodeURIComponent(url)}`);
+      if (r.ok) {
+        const d = await r.json();
+        // Try to find this player by ID or name
+        const list = d?.player_rounds || d?.players || [];
+        const found = pid
+          ? list.find(x => x.player_id === pid || x.id === pid)
+          : list.find(x => `${x.first_name} ${x.last_name}`.trim().toLowerCase() === player.name.toLowerCase());
+        if (found?.stats) return found.stats;
+      }
+    } catch(e) {}
+  }
+
+  return null;
+}
+
+// ── Step 4: Fetch stats for all players in complete games, update UI ─
+async function updateStats() {
+  const active = SELECTED.filter(p => p.status !== 'injured');
+  const done   = active.filter(p => _gameState[p.club]?.state === 'complete');
+  const live   = active.filter(p => _gameState[p.club]?.state === 'live');
+
+  if (done.length === 0 && live.length === 0) return;
+
+  let succeeded = 0;
+  let failed    = [];
+
+  for (const player of done) {
+    const raw = await fetchRawStats(player);
+    if (raw !== null) {
+      const pts = calcPoints(player, raw);
+      if (pts !== null) {
+        window.updatePlayerScore(player.name, pts);
+        succeeded++;
+        // Update 3GA data in localStorage for history
+        const stored = JSON.parse(localStorage.getItem('mcshits_stats') || '{}');
+        if (!stored[CURRENT_ROUND]) stored[CURRENT_ROUND] = {};
+        // Store the raw stat value (not points) for 3GA display
+        const rawStatVal = player.stat === 'hitouts'    ? (raw.HO ?? raw.hitouts ?? 0)
+                         : player.stat === 'tackles'    ? (raw.TK ?? raw.tackles ?? 0)
+                         : player.stat === 'intercepts' ? (raw.IP ?? raw.intercept_possessions ?? raw.intercepts ?? 0)
+                         : player.stat === 'disposals'  ? (raw.D  ?? raw.disposals ?? 0)
+                         : player.stat === 'goals'      ? (raw.G  ?? raw.goals ?? 0)
+                         : 0;
+        stored[CURRENT_ROUND][player.name] = rawStatVal;
+        localStorage.setItem('mcshits_stats', JSON.stringify(stored));
+      }
+    } else {
+      failed.push(player.name.split(' ').pop()); // just surname for brevity
+    }
+  }
+
+  // Update 3GA chips after saving stats
+  if (succeeded > 0) updateAllChips();
+
+  return { succeeded, failed };
+}
+
+// ── Main poll cycle ───────────────────────────────────────────────────
+async function pollCycle() {
+  apiStatus('Checking...', '#38bdf8');
+  apiPulse('#38bdf8');
+
+  const games = await fetchGameState();
+
+  if (!games.length) {
+    apiStatus('⚠ Could not reach Squiggle API — manual entry available', '#ff4d6d');
+    apiPulse('#ff4d6d');
+    return;
+  }
+
+  const active    = SELECTED.filter(p => p.status !== 'injured');
+  const liveCount = active.filter(p => _gameState[p.club]?.state === 'live').length;
+  const doneCount = active.filter(p => _gameState[p.club]?.state === 'complete').length;
+
+  // Update card ring colours for live/complete games
+  active.forEach(player => {
+    const gs = _gameState[player.club];
+    if (!gs) return;
+    const card = document.querySelector(`[data-player="${player.name}"]`)?.closest('.player-card');
+    if (!card) return;
+    if (gs.state === 'live')     card.style.outline = '1px solid #ffb70060';
+    else if (gs.state === 'complete') card.style.outline = '1px solid #00e5a040';
+    else card.style.outline = '';
+  });
+
+  if (doneCount === 0 && liveCount === 0) {
+    apiStatus('No games started yet this round', '#6b7280');
+    apiPulse('#4b5563');
+    return;
+  }
+
+  if (liveCount > 0 && doneCount === 0) {
+    apiStatus(`${liveCount} game(s) in progress — stats update after final siren`, '#ffb700');
+    apiPulse('#ffb700');
+    return;
+  }
+
+  // Some games complete — fetch stats
+  await resolveAflIds();
+  apiStatus(`Fetching stats (${doneCount} game${doneCount > 1 ? 's' : ''} complete)...`, '#38bdf8');
+
+  const result = await updateStats();
+
+  if (!result) return;
+
+  const now = new Date();
+  _lastUpdate = now;
+  const timeStr = now.toLocaleTimeString('en-AU', { hour:'2-digit', minute:'2-digit' });
+
+  if (result.succeeded > 0 && result.failed.length === 0) {
+    apiStatus(`✓ Stats loaded · Updated ${timeStr}`, '#00e5a0');
+    apiPulse('#00e5a0');
+  } else if (result.succeeded > 0) {
+    apiStatus(`Partial: ${result.succeeded} ok · ${result.failed.join(', ')} needs manual entry · ${timeStr}`, '#ffb700');
+    apiPulse('#ffb700');
+  } else {
+    apiStatus(`Games complete but stats API unavailable — use 📊 Log Round Stats to enter manually`, '#ff4d6d');
+    apiPulse('#ff4d6d');
+  }
+
+  if (liveCount > 0) {
+    apiStatus(apiStatus.lastMsg + ` · ${liveCount} game(s) still in progress`, '#ffb700');
+  }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────
+async function initStatsEngine() {
+  await pollCycle();
+  fetchOpponentScore();
+  setInterval(pollCycle, POLL_MS);
+  setInterval(fetchOpponentScore, POLL_MS);
+}
+
+// Manual refresh — also hits the opponent sheet
+window.manualRefresh = () => {
+  apiStatus('Refreshing...', '#38bdf8');
+  pollCycle();
+  fetchOpponentScore();
+};
+
+// Fire after renderSquad has run
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initStatsEngine, 800);
+});
+
+</script>
+</body>
+</html>
